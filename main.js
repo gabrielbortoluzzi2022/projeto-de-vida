@@ -23,7 +23,11 @@ const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4]
 
 function atualizaCronometo(){
     for(let i= 0; i<contadores.length;i++){
-contadores[0].textContent = calculaTempo(tempoObjetivo1);
+document.getAnimations("dias"+i).textContent = calculaTempo(tempos[i])[0];
+document.getAnimations("horas"+i).textContent = calculaTempo(tempos[i])[1];
+document.getAnimations("minutos"+i).textContent = calculaTempo(tempos[i])[2];
+document.getAnimations("segundos"+i).textContent = calculaTempo(tempos[i])[3];
+
 }
 }
 
@@ -38,14 +42,13 @@ segundos %= 60;
 minutos %= 60;
 horas %= 24;
 if(tempoFinal>0){
-return dias + "dias" + horas + "horas" + minutos +"minutos" + segundos + "segundos";
+return [dias,horas,minutos,segundos];
 }
 else{
-    return"prazo Finalizado"
-}
+    return [0,0,0,0]
 }
 function comecaCrometro(){
     atualizaCronometo();
     setInterval(atualizaCronometo, 100)
 }
-//comaCronometro();
+comecaCrometro();
